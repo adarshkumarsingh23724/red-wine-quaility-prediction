@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="theme-toggle">
+        <span id="toggle-theme" class="theme-icon">🌙</span>
+    </div>
+
+    <div class="container">
+        <h1>Wine Quality Prediction</h1>
+        <form action="/predict" method="post">
+            
+            <div class="input-group">
+                <label>Fixed Acidity</label>
+                <input type="number" step="any" min="4" max="15" name="fixed_acidity" placeholder="Range: 4 – 15" required>
+            </div>
+
+            <div class="input-group">
+                <label>Volatile Acidity</label>
+                <input type="number" step="any" min="0.1" max="1.5" name="volatile_acidity" placeholder="Range: 0.1 – 1.5" required>
+            </div>
+
+            <div class="input-group">
+                <label>Citric Acid</label>
+                <input type="number" step="any" min="0" max="1.0" name="citric_acid" placeholder="Range: 0 – 1.0" required>
+            </div>
+
+            <div class="input-group">
+                <label>Residual Sugar</label>
+                <input type="number" step="any" min="1" max="15" name="residual_sugar" placeholder="Range: 1 – 15" required>
+            </div>
+
+            <div class="input-group">
+                <label>Chlorides</label>
+                <input type="number" step="any" min="0.01" max="0.2" name="chlorides" placeholder="Range: 0.01 – 0.2" required>
+            </div>
+
+            <div class="input-group">
+                <label>Free Sulfur Dioxide</label>
+                <input type="number" step="any" min="1" max="70" name="free_sulfur_dioxide" placeholder="Range: 1 – 70" required>
+            </div>
+
+            <div class="input-group">
+                <label>Total Sulfur Dioxide</label>
+                <input type="number" step="any" min="6" max="250" name="total_sulfur_dioxide" placeholder="Range: 6 – 250" required>
+            </div>
+
+            <div class="input-group">
+                <label>Density</label>
+                <input type="number" step="any" min="0.990" max="1.005" name="density" placeholder="Range: 0.990 – 1.005" required>
+            </div>
+
+            <div class="input-group">
+                <label>pH</label>
+                <input type="number" step="any" min="2.8" max="4.0" name="pH" placeholder="Range: 2.8 – 4.0" required>
+            </div>
+
+            <div class="input-group">
+                <label>Sulphates</label>
+                <input type="number" step="any" min="0.3" max="1.5" name="sulphates" placeholder="Range: 0.3 – 1.5" required>
+            </div>
+
+            <div class="input-group">
+                <label>Alcohol</label>
+                <input type="number" step="any" min="8" max="14" name="alcohol" placeholder="Range: 8 – 14" required>
+            </div>
+
+            <button type="submit">Predict Quality</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-box show">
+            <h2>{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById("toggle-theme");
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+        });
+    </script>
+</body>
+</html>
